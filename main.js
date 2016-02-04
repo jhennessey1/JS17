@@ -47,6 +47,9 @@ var Menu = function(plates) {
 	this.plates = plates;
 }
 
+var DrinkMenu = function(drinks){
+	this.drinks = drinks;
+}
 var Restaurant = function(name, description, menu) {
 	this.name = name;
 	this.description = description;
@@ -68,6 +71,16 @@ Drink.prototype.stringify = function() {
 	return ("Name: " + this.name + ". Description: " + this.description + ". Price: $" + this.price + ". Ingredients: " + iterate(this.ingredients) + ".")
 }
 
+Drink.prototype.nameString = function(){
+	var iterate = function(ingredients){
+		var names = []
+		for(var i=0; i<ingredients.length; i++){
+			names.push(ingredients[i].name)
+		}
+		return names.join(', ')
+	}
+		return iterate(this.ingredients)
+}
 Plate.prototype.stringify = function() {
 	
 	var iterate = function(ingredients){
@@ -77,8 +90,22 @@ Plate.prototype.stringify = function() {
 		}
 		return ingredientArray.join(', ')
 	}
-	return ("Name: " + this.name + ". Description: " + this.description + ". Price: $" + this.price + ". Ingredients: " + iterate(this.ingredients) + ".")
+	
+
+	return  iterate(this.ingredients)
 }
+Plate.prototype.nameString = function(){
+	var iterate = function(ingredients){
+		var names = []
+		for(var i=0; i<ingredients.length; i++){
+			names.push(ingredients[i].name)
+		}
+		return names.join(', ')
+	}
+		return iterate(this.ingredients)
+}
+
+
 
 Order.prototype.stringify = function() {
 	var iterate = function(plates) {
@@ -157,18 +184,27 @@ var limeJuice = new FoodItem('Lime Juice', 90, true, true, false)
 
 var margarita = new Drink('Margarita', 'Tequila and Lime Juice', 7, [tequila, limeJuice])
 
-var menu = new Menu([burritoPlate, guacamole, margarita])
+var drinkMenu = new DrinkMenu([margarita])
+
+var menu = new Menu([burritoPlate, guacamole])
 
 var chipotle = new Restaurant("Chipotle", "Burrito Joint", menu)
 
+return {	
+			menu : menu,
+			drinkMenu : drinkMenu
+		}
+
+
+
+
 })
 
-
-
-
-
-
 angular.module('moduleOne')
-	.controller('controllerOne',['$scope', function(factoryOne){
+	.controller('controllerOne',['$scope', 'factoryOne',function($scope, factoryOne){
 
+		$scope.menu = factoryOne.menu
+		console.log($scope.menu)
+		$scope.drinkMenu = factoryOne.drinkMenu
+		console.log($scope.drinkMenu)
 	}])

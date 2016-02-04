@@ -10,17 +10,17 @@
 <h1>Chipotle</h1>
 
 <h2>Menu</h2>
-<div ng-repeat='plate in menu track by $index'>
-	<strong>{{plate.name}}</strong><span>{{plate.price}}</span>
-	<p ng-repeat='items in plate.ingredients'>{{items.name}}</p>
-
-
+<div ng-repeat='plate in menu.plates'>
+	<strong>{{plate.name}}</strong><span> {{plate.price| currency}}</span>
+	<div>{{plate.nameString()}}</div>
+</div>
+<h3>Drink Menu</h3>
+<div ng-repeat='drink in drinkMenu.drinks'>
+	<strong>{{drink.name}}</strong><span> {{drink.price | currency}}</span>
+	<div>{{drink.nameString()}}</div>
 </div>
 
-<h2>Drinks</h2>
-<div>
-	
-</div>	
+
 
 
 
