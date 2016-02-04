@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="moduleOne">
+	<head>
+		<title>JS17: Restaurant UI</title>
+		<link rel="stylesheet" href="main.css"/>
+		<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js'></script>
+		<script type='text/javascript' src='main.js'></script>
+	</head>
+<body ng-controller='controllerOne'>
+<h1>Chipotle</h1>
+
+<h2>Menu</h2>
+<div ng-repeat='plate in menu track by $index'>
+	<strong>{{plate.name}}</strong><span>{{plate.price}}</span>
+	<p ng-repeat='items in plate.ingredients'>{{items.name}}</p>
+
+
+</div>
+
+<h2>Drinks</h2>
+<div>
+	
+</div>	
+
+
+
+
+
+
+</body>
+
+
+
+
+
+</html>
