@@ -207,4 +207,47 @@ angular.module('moduleOne')
 		console.log($scope.menu)
 		$scope.drinkMenu = factoryOne.drinkMenu
 		console.log($scope.drinkMenu)
+		$scope.order = []
+		$scope.totalCost = 0
+		$scope.confirmAddFood = function(plate){
+			plate.showButton = true
+		}
+		$scope.confirmAddDrink = function(drink){
+			drink.showButton = true
+		}
+		$scope.addFoodOrder = function(plate, index) {
+			plate.showButton = false
+			$scope.order.push({name: plate.name, price: plate.price})
+			$scope.totalCost += plate.price
+
+		}
+		$scope.addDrinkOrder = function(drink, index) {
+			drink.showButton = false
+			$scope.order.push({name: drink.name, price: drink.price})
+			$scope.totalCost += drink.price
+		}
+		$scope.confirmRemove = function(index) {
+			$scope.showRemove = true
+			$scope.removeMe = index
+		}
+		$scope.remove = function(index) {
+			$scope.totalCost -= $scope.removeMe.price
+			$scope.order.splice($scope.removeMe, 1)
+			
+			$scope.showRemove = false
+		}
 	}])
+
+
+
+
+
+
+
+
+
+
+
+
+
+

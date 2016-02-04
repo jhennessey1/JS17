@@ -11,15 +11,20 @@
 
 <h2>Menu</h2>
 <div ng-repeat='plate in menu.plates'>
-	<strong>{{plate.name}}</strong><span> {{plate.price| currency}}</span>
+	<strong ng-click="confirmAddFood(plate)">{{plate.name}}</strong><span> {{plate.price| currency}}</span>
+	<button ng-click="addFoodOrder(plate)" ng-show="plate.showButton">Add to Order?</button>
 	<div>{{plate.nameString()}}</div>
 </div>
 <h3>Drink Menu</h3>
 <div ng-repeat='drink in drinkMenu.drinks'>
-	<strong>{{drink.name}}</strong><span> {{drink.price | currency}}</span>
+	<strong ng-click="confirmAddDrink(drink)">{{drink.name}}</strong><span> {{drink.price | currency}}</span><button ng-click="addDrinkOrder(drink)" ng-show="drink.showButton">Add to Order?</button>
 	<div>{{drink.nameString()}}</div>
 </div>
-
+<div>
+	<h3>My Order: </h3><h4 ng-repeat="plate in order track by $index" ng-click="confirmRemove($index)">{{plate.name}} - {{plate.price | currency}}</h4>
+	<h3>Total Cost = <span>{{totalCost | currency}}</span></h3>
+	<button ng-show="showRemove" ng-click="remove($index)">Remove From Order?</button>
+</div>
 
 
 
